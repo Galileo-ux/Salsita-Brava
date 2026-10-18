@@ -1,36 +1,58 @@
+const SITE_CONFIG = Object.freeze({
+  whatsappNumber: "528136412170",
+});
+
+const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsappNumber}`;
+const whatsappLinks = document.querySelectorAll("[data-whatsapp-link]");
+
+whatsappLinks.forEach((link) => {
+  link.href = whatsappUrl;
+});
+
+const whatsappNumberLabel = document.querySelector("[data-whatsapp-number]");
+
+if (whatsappNumberLabel) {
+  const localNumber = SITE_CONFIG.whatsappNumber.slice(-10);
+  whatsappNumberLabel.textContent = localNumber.replace(
+    /^(\d{3})(\d{3})(\d{4})$/,
+    "$1 $2 $3"
+  );
+}
+
 const menuToggle = document.querySelector(".menu-toggle");
 const siteNavigation = document.querySelector("#site-navigation");
 
 if (menuToggle && siteNavigation) {
-  const closeMenu = () => {
-    menuToggle.setAttribute("aria-expanded", "false");
-    menuToggle.setAttribute("aria-label", "Abrir menú");
-    siteNavigation.classList.remove("is-open");
+  const setMenuOpen = (isOpen, restoreFocus = false) => {
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Cerrar menú" : "Abrir menú");
+    siteNavigation.classList.toggle("is-open", isOpen);
+
+    if (!isOpen && restoreFocus) {
+      menuToggle.focus();
+    }
   };
 
   menuToggle.addEventListener("click", () => {
-    const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-
-    menuToggle.setAttribute("aria-expanded", String(!isExpanded));
-    menuToggle.setAttribute("aria-label", isExpanded ? "Abrir menú" : "Cerrar menú");
-    siteNavigation.classList.toggle("is-open", !isExpanded);
+    const isOpen = menuToggle.getAttribute("aria-expanded") === "true";
+    setMenuOpen(!isOpen);
   });
 
   siteNavigation.addEventListener("click", (event) => {
     if (event.target instanceof Element && event.target.closest("a")) {
-      closeMenu();
+      setMenuOpen(false);
     }
   });
 
   document.addEventListener("keydown", (event) => {
-    if (event.key === "Escape") {
-      closeMenu();
+    if (event.key === "Escape" && menuToggle.getAttribute("aria-expanded") === "true") {
+      setMenuOpen(false, true);
     }
   });
 
   window.addEventListener("resize", () => {
     if (window.innerWidth > 640) {
-      closeMenu();
+      setMenuOpen(false);
     }
   });
 }
@@ -42,9 +64,13 @@ if (currentYear) {
 }
 
 const revealElements = document.querySelectorAll(".reveal");
-const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reducedMotionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
 
-if (!prefersReducedMotion && "IntersectionObserver" in window) {
+if (
+  revealElements.length > 0 &&
+  !reducedMotionPreference.matches &&
+  typeof window.IntersectionObserver === "function"
+) {
   document.documentElement.classList.add("js-motion");
 
   const revealObserver = new IntersectionObserver(
@@ -60,4 +86,12 @@ if (!prefersReducedMotion && "IntersectionObserver" in window) {
   );
 
   revealElements.forEach((element) => revealObserver.observe(element));
+
+  reducedMotionPreference.addEventListener("change", (event) => {
+    if (event.matches) {
+      revealObserver.disconnect();
+      document.documentElement.classList.remove("js-motion");
+      revealElements.forEach((element) => element.classList.add("is-visible"));
+    }
+  });
 }

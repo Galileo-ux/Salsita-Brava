@@ -4,8 +4,8 @@
   --paper-deep: #f0e8d5;
   --ink: #171511;
   --ink-soft: #69665d;
-  --red: #df3037;
-  --red-dark: #b51f2a;
+  --red: #ad1d27;
+  --red-dark: #8e1720;
   --yellow: #f4cf42;
   --line: rgba(32, 30, 25, 0.16);
   --serif: "Playfair Display", Georgia, serif;
@@ -67,7 +67,7 @@ img {
 
 .announcement {
   display: flex;
-  min-height: 37px;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
   gap: 11px;
@@ -81,6 +81,9 @@ img {
 }
 
 .announcement a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   transition: color 160ms ease;
 }
 
@@ -93,7 +96,7 @@ img {
   font-size: 13px;
 }
 
-.announcement a {
+.announcement > a {
   color: var(--yellow);
   font-weight: 700;
 }
@@ -121,6 +124,7 @@ img {
 
 .brand {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 10px;
 }
@@ -167,6 +171,9 @@ img {
 }
 
 .site-nav > a:not(.button) {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
   transition: color 160ms ease;
 }
 
@@ -196,7 +203,7 @@ img {
 }
 
 .button--small {
-  min-height: 41px;
+  min-height: 44px;
   gap: 18px;
   padding: 0 17px;
   font-size: 11px;
@@ -314,6 +321,7 @@ img {
 
 .text-link {
   display: inline-flex;
+  min-height: 44px;
   align-items: center;
   gap: 9px;
   font-size: 11px;
@@ -389,13 +397,14 @@ img {
 
 .hero__image {
   width: 100%;
-  aspect-ratio: 0.92;
+  height: auto;
+  aspect-ratio: 1;
   object-fit: cover;
 }
 
 .hero-sticker {
   position: absolute;
-  right: -26px;
+  right: -20px;
   bottom: 29px;
   display: flex;
   width: 112px;
@@ -486,11 +495,11 @@ img {
 }
 
 .js-motion .reveal--from-left {
-  transform: translateX(-24px);
+  transform: translateY(22px);
 }
 
 .js-motion .reveal--from-right {
-  transform: translateX(24px);
+  transform: translateY(22px);
 }
 
 .js-motion .reveal.is-visible {
@@ -587,7 +596,7 @@ img {
 }
 
 .specialty-card__number {
-  color: rgba(32, 30, 25, 0.55);
+  color: #514a3f;
   font-size: 10px;
   font-weight: 600;
 }
@@ -632,7 +641,7 @@ img {
 .specialty-card__size {
   padding-top: 12px;
   border-top: 1px solid rgba(32, 30, 25, 0.18);
-  color: #605c52;
+  color: #514a3f;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.04em;
@@ -809,6 +818,9 @@ img {
 }
 
 .contact__social a {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
   color: var(--red);
   font-size: 12px;
   font-weight: 700;
@@ -845,6 +857,23 @@ img {
 
 .site-footer > p span {
   color: var(--red);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--paper);
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px var(--ink);
+}
+
+.brand-story a:focus-visible,
+.brand-story button:focus-visible {
+  outline-color: var(--yellow);
+  box-shadow: 0 0 0 5px var(--paper);
+}
+
+.skip-link:focus-visible {
+  z-index: 21;
 }
 
 @keyframes hero-float {
@@ -940,7 +969,6 @@ img {
   }
 
   .announcement {
-    min-height: 35px;
     gap: 7px;
     padding-right: 10px;
     padding-left: 10px;
@@ -977,8 +1005,8 @@ img {
 
   .menu-toggle {
     display: flex;
-    width: 42px;
-    height: 42px;
+    width: 44px;
+    height: 44px;
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -1106,11 +1134,8 @@ img {
   }
 
   .hero__image-wrap {
-    animation-duration: 7s;
-  }
-
-  .hero__image-wrap {
     border-width: 6px;
+    animation-duration: 7s;
   }
 
   .hero-sticker {
@@ -1259,7 +1284,6 @@ img {
 
 @media (max-width: 360px) {
   .announcement {
-    min-height: 35px;
     gap: 9px;
   }
 
@@ -1283,7 +1307,12 @@ img {
   *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
+    animation: none !important;
+  }
+
+  .js-motion .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
   }
 }
