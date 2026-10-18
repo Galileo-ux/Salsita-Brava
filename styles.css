@@ -283,6 +283,7 @@ img {
 .hero h1,
 .section-heading h2,
 .brand-story h2,
+.reviews h2,
 .contact h2 {
   margin: 0;
   font-family: var(--serif);
@@ -298,6 +299,7 @@ img {
 
 .hero h1 em,
 .section-heading h2 em,
+.reviews h2 em,
 .contact h2 em {
   color: var(--red);
   font-weight: 600;
@@ -766,6 +768,56 @@ img {
   pointer-events: none;
 }
 
+.reviews {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+  padding-top: 88px;
+  padding-bottom: 88px;
+  border-top: 1px solid var(--line);
+}
+
+.reviews__copy {
+  max-width: 560px;
+}
+
+.reviews__copy .eyebrow {
+  margin-bottom: 17px;
+}
+
+.reviews h2 {
+  font-size: clamp(43px, 5vw, 63px);
+  line-height: 1.02;
+}
+
+.reviews__copy > p:not(.eyebrow) {
+  max-width: 440px;
+  margin: 16px 0 0;
+  color: var(--ink-soft);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+.reviews__action {
+  display: grid;
+  width: min(100%, 300px);
+  flex: 0 0 auto;
+  gap: 12px;
+}
+
+.reviews__action .button {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.reviews__action > p {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 10px;
+  line-height: 1.7;
+}
+
 .contact {
   display: flex;
   min-height: 380px;
@@ -836,9 +888,17 @@ img {
   display: inline-flex;
   min-height: 44px;
   align-items: center;
+  gap: 8px;
   color: var(--red);
   font-size: 12px;
   font-weight: 700;
+}
+
+.contact__social-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  object-fit: cover;
 }
 
 .site-footer {
@@ -1266,6 +1326,23 @@ button:focus-visible {
     gap: 35px;
     padding-top: 72px;
     padding-bottom: 65px;
+  }
+
+  .reviews {
+    align-items: stretch;
+    flex-direction: column;
+    gap: 24px;
+    padding-top: 72px;
+    padding-bottom: 72px;
+  }
+
+  .reviews h2 {
+    font-size: clamp(44px, 11vw, 58px);
+  }
+
+  .reviews__action {
+    width: 100%;
+    max-width: 360px;
   }
 
   .contact__social {
