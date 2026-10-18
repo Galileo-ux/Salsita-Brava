@@ -558,7 +558,7 @@ img {
 
 .specialty-card {
   display: flex;
-  min-height: 306px;
+  min-height: 350px;
   flex-direction: column;
   justify-content: space-between;
   padding: 20px 19px 17px;
@@ -639,12 +639,27 @@ img {
 }
 
 .specialty-card__size {
-  padding-top: 12px;
-  border-top: 1px solid rgba(32, 30, 25, 0.18);
   color: #514a3f;
   font-size: 9px;
   font-weight: 600;
   letter-spacing: 0.04em;
+}
+
+.specialty-card__footer {
+  display: grid;
+  gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(32, 30, 25, 0.18);
+}
+
+.specialty-card__order {
+  width: 100%;
+  min-height: 46px;
+  gap: 8px;
+  padding-right: 10px;
+  padding-left: 10px;
+  font-size: 10px;
+  white-space: nowrap;
 }
 
 .brand-story {
@@ -936,7 +951,6 @@ button:focus-visible {
   }
 
   .hero-sticker {
-    right: -15px;
     width: 95px;
     height: 95px;
   }
@@ -946,7 +960,7 @@ button:focus-visible {
   }
 
   .specialty-card {
-    min-height: 275px;
+    min-height: 340px;
     padding: 22px;
   }
 
@@ -960,6 +974,12 @@ button:focus-visible {
 
   .brand-story__circle {
     width: min(255px, 84%);
+  }
+}
+
+@media (max-width: 1100px) {
+  .hero-sticker {
+    right: -8px;
   }
 }
 
@@ -1192,7 +1212,7 @@ button:focus-visible {
   }
 
   .specialty-card {
-    min-height: 255px;
+    min-height: 330px;
     padding: 19px;
   }
 
