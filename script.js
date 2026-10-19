@@ -4,7 +4,7 @@ const SITE_CONFIG = Object.freeze({
 
 const whatsappBaseUrl = `https://wa.me/${SITE_CONFIG.whatsappNumber}`;
 const defaultWhatsappMessage =
-  "Hola, quiero hacer un pedido en Salsita Brava. ¿Me pueden compartir las opciones disponibles?";
+  "Hola, me interesa la salsa Salsita Brava. ¿Cuál es su precio y disponibilidad?";
 const whatsappLinks = document.querySelectorAll("[data-whatsapp-link]");
 
 whatsappLinks.forEach((link) => {
